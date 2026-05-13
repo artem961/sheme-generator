@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1e446903-29a7-4dd6-8fcc-af46435d0aaf" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/gg.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.$diagram.drawio.bkp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.$example_2.drawio.bkp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_1.drawio" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_1.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_2.drawio" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_2.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/fixtures/.$example_1_out.drawio.bkp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/fixtures/.$example_complex_out.drawio.bkp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/fixtures/.$test_1_out.drawio.bkp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/uv.lock" beforeDir="false" afterPath="$PROJECT_DIR$/uv.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,10 +33,16 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "ai.playground.ignore.import.keys.banner.in.settings": "true",
     "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/scheme-generator/dist",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\scheme-generator\dist" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -56,7 +58,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1778701439368</updated>
-      <workItem from="1778701440503" duration="2878000" />
+      <workItem from="1778701440503" duration="4817000" />
     </task>
     <servers />
   </component>
