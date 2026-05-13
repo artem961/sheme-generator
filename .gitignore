@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+build/
+dist/
+*.spec
+*.pyc
+*.drawio
+*.svg
+output.drawio
+
+# Allow bin/ directory with pre-built binaries
+!bin/
+!bin/**
