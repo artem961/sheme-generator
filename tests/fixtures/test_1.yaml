@@ -1,0 +1,151 @@
+meta:
+  name: "ProcessStudentGrades"
+  description: "Комплексный алгоритм нормализации оценок с множественным выходом"
+
+nodes:
+  # --- СЛОЙ 0 ---
+  start_node:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО"
+
+  # --- СЛОЙ 1 ---
+  input_data:
+    type: 4
+    layer: 1
+    text: "grades, n"
+
+  # --- СЛОЙ 2 ---
+  check_empty:
+    type: 2
+    layer: 2
+    text: "n <= 0"
+
+  # --- СЛОЙ 3 ---
+  init_vars:
+    type: 1
+    layer: 3
+    order: 1
+    text: |
+      passed_count = 0
+      i = 0
+      
+  err_empty:
+    type: 4
+    layer: 3
+    order: 2
+    text: "Exception: No students data"
+
+  # --- СЛОЙ 4 ---
+  loop_node:
+    type: 6
+    layer: 4
+    text: "i = 0, n - 1"
+
+  # --- СЛОЙ 5 ---
+  func_call:
+    type: 3
+    layer: 5
+    text: "normalized = apply_curve(grades_{i})"
+
+  # --- СЛОЙ 6 ---
+  check_pass:
+    type: 2
+    layer: 6
+    text: "normalized >= 50"
+
+  # --- СЛОЙ 7 ---
+  update_stats:
+    type: 1
+    layer: 7
+    text: |
+      passed_count = passed_count + 1
+      grades_{i} = normalized
+
+  # --- СЛОЙ 8 ---
+  check_any_passed:
+    type: 2
+    layer: 8
+    text: "passed_count > 0"
+
+  # --- СЛОЙ 9 ---
+  out_success:
+    type: 4
+    layer: 9
+    order: 1
+    text: "grades, passed_count"
+
+  err_all_failed:
+    type: 4
+    layer: 9
+    order: 2
+    text: "Exception: All students failed"
+
+  # --- СЛОЙ 10 ---
+  end_node:
+    type: 5
+    layer: 10
+    text: "КОНЕЦ"
+
+
+edges:
+  # --- Инициализация и первичная проверка ---
+  - from: start_node
+    to: input_data
+    
+  - from: input_data
+    to: check_empty
+    
+  - from: check_empty
+    to: err_empty
+    label: "Да" # Ранний выход, если массив пуст
+    
+  - from: check_empty
+    to: init_vars
+    label: "Нет"
+    
+  - from: init_vars
+    to: loop_node
+
+  # --- Вход в тело цикла ---
+  - from: loop_node
+    to: func_call
+    
+  - from: func_call
+    to: check_pass
+
+  # --- Ветвление внутри цикла ---
+  - from: check_pass
+    to: update_stats
+    label: "Да"
+    
+  # --- Возвраты обратно в блок цикла ---
+  - from: update_stats
+    to: loop_node
+    
+  - from: check_pass
+    to: loop_node
+    label: "Нет" # Пропуск обновления, если оценка < 50
+
+  # --- Выход из цикла ---
+  - from: loop_node
+    to: check_any_passed
+
+  # --- Финальная проверка и вывод результатов ---
+  - from: check_any_passed
+    to: out_success
+    label: "Да"
+    
+  - from: check_any_passed
+    to: err_all_failed
+    label: "Нет"
+
+  # --- Сведение всех ветвей к концу ---
+  - from: err_empty
+    to: end_node
+    
+  - from: out_success
+    to: end_node
+    
+  - from: err_all_failed
+    to: end_node

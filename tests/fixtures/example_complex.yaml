@@ -1,0 +1,81 @@
+meta:
+  name: "ComplexMatrixFlow"
+nodes:
+  start:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО\nПроверка матрицы"
+  input:
+    type: 4
+    layer: 1
+    text: "matrix, n, m"
+  init_counter:
+    type: 1
+    layer: 2
+    text: "neg_count = 0"
+  loop_rows:
+    type: 6
+    layer: 3
+    text: "i = 0, n - 1"
+  loop_cols:
+    type: 6
+    layer: 4
+    text: "j = 0, m - 1"
+  check_val:
+    type: 2
+    layer: 5
+    text: "matrix_{i}_{j} < 0"
+  set_zero:
+    type: 1
+    layer: 6
+    text: "matrix_{i}_{j} = 0"
+  increment_negative_count:
+    type: 1
+    layer: 7
+    text: "neg_count = neg_count + 1"
+  print_matrix:
+    type: 3
+    layer: 8
+    order: 1
+    text: "print(matrix)\nprint(neg_count)"
+  error_func:
+    type: 4
+    layer: 8
+    order: 2
+    text: "Error"
+  end:
+    type: 5
+    layer: 9
+    text: "КОНЕЦ"
+edges:
+  - from: start
+    to: input
+  - from: input
+    to: init_counter
+  - from: init_counter
+    to: loop_rows
+  - from: loop_rows
+    to: loop_cols
+  - from: loop_cols
+    to: check_val
+  - from: check_val
+    to: set_zero
+    label: "ДА"
+  - from: set_zero
+    to: increment_negative_count
+  - from: increment_negative_count
+    to: loop_cols
+  # Здесь ребро перепрыгивает через блоки 6 и 7 слоев
+  - from: check_val
+    to: loop_cols
+    label: "НЕТ"
+  - from: loop_cols
+    to: loop_rows
+    label: "Next row"
+  # А здесь ребро перепрыгивает из слоя 3 (loop_rows) в слой 8, обходя все тело цикла
+  - from: loop_rows
+    to: print_matrix
+  - from: print_matrix
+    to: end
+  - from: error_func
+    to: end

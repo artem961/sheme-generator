@@ -1,0 +1,62 @@
+meta:
+  name: "FindMaxInArray"
+nodes:
+  start_node:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО"
+  input_data:
+    type: 4
+    layer: 1
+    text: "arr, n"
+  init_vars:
+    type: 1
+    layer: 2
+    text: |
+      max_val = arr_{0}
+      i = 1
+  loop_start:
+    type: 6
+    layer: 3
+    text: "i = 1, n - 1"
+  check_max:
+    type: 2
+    layer: 4
+    text: "arr_{i} > max_val"
+  update_max:
+    type: 1
+    layer: 5
+    text: "max_val = arr_{i}"
+  print_func:
+    type: 3
+    layer: 6
+    order: 1
+    text: "print(max_val)"
+  error_func:
+    type: 4
+    layer: 6
+    order: 2
+    text: "Exception: array is empty"
+  end_node:
+    type: 5
+    layer: 7
+    text: "КОНЕЦ"
+edges:
+  - from: start_node
+    to: input_data
+  - from: input_data
+    to: init_vars
+  - from: init_vars
+    to: loop_start
+  - from: loop_start
+    to: check_max
+  - from: check_max
+    to: update_max
+    label: "Да"
+  - from: update_max
+    to: loop_start
+  - from: check_max
+    to: loop_start
+    label: "Нет"
+  - from: loop_start
+    to: print_func

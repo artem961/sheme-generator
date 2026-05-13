@@ -1,0 +1,48 @@
+meta:
+  name: "Example1"
+nodes:
+  start:
+    type: 5
+    layer: 0
+    text: "НАЧАЛО\nМетод Ньютона"
+  input:
+    type: 4
+    layer: 1
+    text: "a, b, eps, eq"
+  verify:
+    type: 3
+    layer: 2
+    text: "eq.checkIntervalHasOnlyOneRoot(a, b)"
+  init:
+    type: 1
+    layer: 3
+    text: "i = 0\nx = a"
+  condition:
+    type: 2
+    layer: 4
+    text: "eq.f(x) * eq.ddf(x) > 0"
+  set_b:
+    type: 1
+    layer: 5
+    text: "x = b"
+  end:
+    type: 5
+    layer: 6
+    text: "КОНЕЦ"
+edges:
+  - from: start
+    to: input
+  - from: input
+    to: verify
+  - from: verify
+    to: init
+  - from: init
+    to: condition
+  - from: condition
+    to: set_b
+    label: "ДА"
+  - from: condition
+    to: end
+    label: "НЕТ"
+  - from: set_b
+    to: end
